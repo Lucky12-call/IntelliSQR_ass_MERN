@@ -1,22 +1,32 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import APIError from "../utils/apiError";
 
 const prisma = new PrismaClient();
 
 const userLogin = async (req: Request, res: Response) => {
   try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
+    if (password.length < 8) {
+      return res
+        .status(400)
+        .json({ error: "Password must be at least 8 character" });
+    }
+
     const user = await prisma.user.create({
       data: {
-        email: req.body.email,
-        password: req.body.password,
+        email,
+        password,
       },
     });
     res.status(201).json({ user, message: "User created successfully" });
   } catch (error) {
-    res.status(400).json({ error: "User creation failed" });
-    throw new APIError("User creation failed", 400);
+    return res.status(400).json({ error: "User creation failed" });
   }
 };
 
-export default userLogin;
+export { userLogin };
