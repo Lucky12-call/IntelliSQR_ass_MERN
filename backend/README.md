@@ -50,8 +50,6 @@ backend/
 │       └── user.controller.tx     # Request handlers
 │   ├── routes/                    # API routes
 │       └── user.route.ts          # User Login route
-│   ├── utils/                     # Contains all utility files
-│       └── apiError.ts            # Handle API Errors
 │   ├── server.ts                  # Express app entry point
 │   └── app.ts                     # Express app setup
 ├── .env                           # Environment variables
