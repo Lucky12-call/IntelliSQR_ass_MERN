@@ -5,7 +5,7 @@
 1. **Clone the Repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Lucky12-call/IntelliSQR_ass_MERN/tree/main/backend
    cd backend
    ```
 
